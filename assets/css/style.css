@@ -9,3 +9,57 @@ body {
   font-size: 48px;
   font-weight: 800;
 }
+#timer {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#question {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#answer1 {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#answer2 {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#answer3 {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#answer4 {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#timesUpTitle {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#timesUpMssg {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+#timesUpAnswer {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
