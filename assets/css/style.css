@@ -6,60 +6,72 @@ body {
   text-align: center;
   text-shadow: 2px 2px 8px #FF0000;
   color: white;
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 800;
 }
 #timer {
+  text-shadow: 1px 1px 12px #0408F6;
   text-align: center;
-  color: white;
-  font-size: 48px;
+  color: red;
+  font-size: 36px;
   font-weight: 800;
 }
 #question {
+  text-shadow: 4px 4px 12px #249E01;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
 #answer1 {
+  text-shadow: 4px 4px 12px #5B019E;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
 #answer2 {
+  text-shadow: 4px 4px 12px #5B019E;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
 #answer3 {
+  text-shadow: 4px 4px 12px #5B019E;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
 #answer4 {
+  text-shadow: 4px 4px 12px #5B019E;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
-#timesUpTitle {
+#resultTitle {
+  text-shadow: 4px 4px 12px #2FC005;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
-#timesUpMssg {
+#resultMssg {
+  text-shadow: 4px 4px 12px #2FC005;
   text-align: center;
   color: white;
   font-size: 48px;
   font-weight: 800;
 }
-#timesUpAnswer {
+#resultAnswer {
+  text-shadow: 4px 4px 12px #2FC005;
   text-align: center;
-  color: white;
+  color: #DDDD00;
   font-size: 48px;
   font-weight: 800;
+}
+#restartBtn {
+  text-align: center;
 }

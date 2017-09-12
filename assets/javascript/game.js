@@ -1,132 +1,136 @@
 var questionBank = [];
 var questionNum = 0;
-var questionInterval;
-var answerCounterInterval;
+var questionInterval = null;
+var correctCount = 0;
+var resultTime = 5000;
 
 $(document).ready(function() {
   init();
   $("#answer1").click(function() {
     if(questionBank[questionNum].answer1 === questionBank[questionNum].correct) {
       clearInterval(questionInterval);
-      correctA(questionNum);
+      correctA();
     } else {
       clearInterval(questionInterval);
-      wrongA(questionNum);
+      wrongA();
     }
   });
   $("#answer2").click(function() {
     if(questionBank[questionNum].answer2 === questionBank[questionNum].correct) {
       clearInterval(questionInterval);
-      correctA(questionNum);
+      correctA();
     } else {
       clearInterval(questionInterval);
-      wrongA(questionNum);
+      wrongA();
     }
   });
   $("#answer3").click(function() {
     if(questionBank[questionNum].answer3 === questionBank[questionNum].correct) {
       clearInterval(questionInterval);
-      correctA(questionNum);
+      correctA();
     } else {
       clearInterval(questionInterval);
-      wrongA(questionNum);
+      wrongA();
     }
   });
   $("#answer4").click(function() {
     if(questionBank[questionNum].answer4 === questionBank[questionNum].correct) {
       clearInterval(questionInterval);
-      correctA(questionNum);
+      correctA();
     } else {
       clearInterval(questionInterval);
-      wrongA(questionNum);
+      wrongA();
     }
   });
-});
-
-function questions(questionNum) {
+  $("#restartBtn").click(function() {
+    questionNum = 0;
+    correctCount = 0;
+    questions();
+  })
+function questions() {
   console.log("inside question number:"+questionNum);
-  $("#question").html(questionBank[questionNum].question);
-  $("#answer1").html(questionBank[questionNum].answer1);
-  $("#answer2").html(questionBank[questionNum].answer2);
-  $("#answer3").html(questionBank[questionNum].answer3);
-  $("#answer4").html(questionBank[questionNum].answer4);
-  var questionCounter = 10;
-  $("#timer").html("Time Remaining: "+questionCounter+" Seconds");
-  questionInterval = setInterval(function(){
-    console.log(questionCounter);
-    questionCounter -= 1;
+  clearResults();
+  if(questionNum >= 8) {
+    finalScreen();
+  } else {
+    $("#question").html(questionBank[questionNum].question);
+    $("#answer1").html(questionBank[questionNum].answer1);
+    $("#answer2").html(questionBank[questionNum].answer2);
+    $("#answer3").html(questionBank[questionNum].answer3);
+    $("#answer4").html(questionBank[questionNum].answer4);
+    var questionCounter = 15;
     $("#timer").html("Time Remaining: "+questionCounter+" Seconds");
-    if(questionCounter <= 0) {
-      clearInterval(questionInterval);
-      timesUp(questionNum);
-    }
-  }, 1000);
+    questionInterval = setInterval(function(){
+      console.log(questionCounter);
+      questionCounter -= 1;
+      $("#timer").html("Time Remaining: "+questionCounter+" Seconds");
+      if(questionCounter <= 0) {
+        clearInterval(questionInterval);
+        timesUp(questionNum);
+      }
+    }, 1000);
+  }
 }
 
-function timesUp(questionNum) {
+function finalScreen() {
+  $("#resultTitle").html("This Is The End Of Your Journey");
+  $("#resultMssg").html("Final Results");
+  $("#resultAnswer").html(correctCount+"/"+questionBank.length);
+  $("#restartBtn").append($('<input type="button" class="btn btn-primary" value="Restart">'));
+}
+
+function timesUp() {
+  clearQuestion();
+  $("#resultTitle").html("YOU RAN OUT OF TIME!");
+  $("#resultMssg").html("Correct Answer:");
+  $("#resultAnswer").html(questionBank[questionNum].correct);
+  questionNum += 1;
+  var timeOut = setTimeout(function() {
+    questions();
+  }, resultTime);
+}
+
+function wrongA() {
+  clearQuestion();
+  $("#resultTitle").html("WRONG ANSWER! =(");
+  $("#resultMssg").html("Correct Answer:");
+  $("#resultAnswer").html(questionBank[questionNum].correct);
+  console.log(questionNum);
+  questionNum += 1;
+  console.log(questionNum);
+  var timeOut = setTimeout(function() {
+    questions();
+  }, resultTime);
+}
+
+function correctA() {
+  clearQuestion();
+  $("#resultTitle").html("Good Job!!!!");
+  $("#resultMssg").html("Correct Answer:");
+  $("#resultAnswer").html(questionBank[questionNum].correct);
+  questionNum += 1;
+  correctCount += 1;
+  console.log(questionNum);
+  var timeOut = setTimeout(function() {
+    questions();
+  }, resultTime);
+}
+
+function clearQuestion() {
+  console.log("question cleared!!!!");
   $("#timer").empty();
   $("#question").empty();
   $("#answer1").empty();
   $("#answer2").empty();
   $("#answer3").empty();
   $("#answer4").empty();
-  $("#timesUpTitle").html("YOU RAN OUT OF TIME!");
-  $("#timesUpMssg").html("Correct Answer:");
-  $("#timesUpAnswer").html(questionBank[questionNum].correct);
-  var answerCounter = 8;
-  answerCounterInterval = setInterval(function(){
-    answerCounter -= 1;
-    if(answerCounter <= 0) {
-      clearInterval(answerCounterInterval);
-    }
-  }, 1000);
-  questionNum += 1;
-  clearInterval(answerCounterInterval);
-  questions(questionNum);
 }
 
-function wrongA(questionNum) {
-  $("#timer").empty();
-  $("#question").empty();
-  $("#answer1").empty();
-  $("#answer2").empty();
-  $("#answer3").empty();
-  $("#answer4").empty();
-  $("#timesUpTitle").html("WRONG ANSWER! =(");
-  $("#timesUpMssg").html("Correct Answer:");
-  $("#timesUpAnswer").html(questionBank[questionNum].correct);
-  var answerCounter = 8;
-  answerCounterInterval = setInterval(function(){
-    answerCounter -= 1;
-    if(answerCounter <= 0) {
-      clearInterval(answerCounterInterval);
-    }
-  }, 1000);
-  questionNum += 1;
-  clearInterval(answerCounterInterval);
-  questions(questionNum);
-}
-
-function correctA(questionNum) {
-  $("#timer").empty();
-  $("#question").empty();
-  $("#answer1").empty();
-  $("#answer2").empty();
-  $("#answer3").empty();
-  $("#answer4").empty();
-  $("#timesUpTitle").html("You got it right!");
-  $("#timesUpMssg").html("Correct Answer:");
-  $("#timesUpAnswer").html(questionBank[questionNum].correct);
-  var answerCounter = 8;
-  answerCounterInterval = setInterval(function(){
-    answerCounter -= 1;
-    if(answerCounter <= 0) {
-      clearInterval(answerCounterInterval);
-    }
-  }, 1000);
-  questionNum += 1;
-  clearInterval(answerCounterInterval);
-  questions(questionNum);
+function clearResults() {
+  $("#resultTitle").empty();
+  $("#resultMssg").empty();
+  $("#resultAnswer").empty();
+  $("#restartBtn").empty();
 }
 
 function init() {
@@ -162,8 +166,40 @@ function init() {
     "The Onion Knight",
     "The Onion Knight"
   )
-  questionBank = [question1, question2, question3, question4];
-  questions(questionNum);
+  var question5 = new question(
+    "Melisandre gave birth to a shadow that killed Renly Baratheon. Who did the shadow look like?",
+    "Jeoffery",
+    "King beyond The Wall",
+    "Stannis",
+    "Melisandre",
+    "Stannis"
+  )
+  var question5 = new question(
+    "Melisandre gave birth to a shadow that killed Renly Baratheon. Who did the shadow look like?",
+    "Jeoffery",
+    "King beyond The Wall",
+    "Stannis",
+    "Melisandre",
+    "Stannis"
+  )
+  var question6 = new question(
+    "What is the translation of the phrase: 'Valar dohaeris'?",
+    "All men must die",
+    "All men must serve",
+    "All men must be no one",
+    "The prince of that was promised",
+    "All men must serve"
+  )
+  var question7 = new question(
+    "Who planned the wild fire attack that destroyed some of Stannis' fleet?",
+    "Tywin",
+    "Renly",
+    "Cersei",
+    "Tyrion",
+    "Tyrion"
+  )
+  questionBank = [question1, question2, question3, question4, question5, question6, question7];
+  questions();
 }
 
 function question(questionIn, answer1In, answer2In, answer3In, answer4In, correctIn) {
@@ -174,3 +210,5 @@ function question(questionIn, answer1In, answer2In, answer3In, answer4In, correc
   this.answer4 = answer4In;
   this.correct = correctIn;
 }
+
+});
