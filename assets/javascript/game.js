@@ -50,7 +50,7 @@ $(document).ready(function() {
 function questions() {
   console.log("inside question number:"+questionNum);
   clearResults();
-  if(questionNum >= 8) {
+  if(questionNum >= 7) {
     finalScreen();
   } else {
     $("#question").html(questionBank[questionNum].question);
